@@ -1,0 +1,22 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "SaveEcoBot",
+        "description": "Type in **Search** to filter cities, then pick a city. To find station IDs, open [SaveEcoBot map]({map_link}) and click a point — check `device_xxxxx` at the end of the URL.",
+        "data": {
+          "q": "Search",
+          "city": "City"
+        }
+      },
+      "stations": {
+        "title": "SaveEcoBot stations",
+        "description": "Select stations to create sensors. Tip: open [SaveEcoBot map]({map_link}) and look for `device_xxxxx` in the URL.",
+        "data": {
+          "select_all": "Select all stations",
+          "station_ids": "Stations"
+        }
+      }
+    }
+  }
+}

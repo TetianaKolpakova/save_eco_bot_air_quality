@@ -1,0 +1,43 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "SaveEcoBot",
+        "description": "Оберіть місто. Щоб знайти ID станції, відкрийте [мапу SaveEcoBot]({map_link}) і клацніть по точці — подивіться на кінець URL, там буде на кшталт `device_xxxxx`.",
+        "data": {
+          "city": "Місто"
+        }
+      },
+      "stations": {
+        "title": "Станції SaveEcoBot",
+        "description": "Виберіть станції для створення сенсорів. Підказка: відкрийте [мапу SaveEcoBot]({map_link}) і подивіться `device_xxxxx` в URL.",
+        "data": {
+          "select_all": "Вибрати всі станції",
+          "station_ids": "Станції"
+        }
+      }
+    },
+    "error": {
+      "no_cities": "Немає доступних міст з API",
+      "city_required": "Вкажіть місто"
+    }
+  },
+  "options": {
+    "step": {
+      "city": {
+        "title": "Налаштування SaveEcoBot",
+        "data": {
+          "city": "Місто"
+        }
+      },
+      "stations": {
+        "title": "Станції",
+        "description": "Виберіть станції або використайте перемикач «Вибрати всі станції». Підказка: [мапа SaveEcoBot]({map_link}).",
+        "data": {
+          "select_all": "Вибрати всі станції",
+          "station_ids": "Станції"
+        }
+      }
+    }
+  }
+}

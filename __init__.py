@@ -1,1 +1,0 @@
-"""The SaveEcoBot sensor integration."""

@@ -1,73 +1,91 @@
 # SaveEcoBot sensor for Home Assistant
 
-[SaveEcoBot](https://www.saveecobot.com/en) is a nice Ukrainian environmental project.
+[SaveEcoBot](https://www.saveecobot.com/en) — це український екологічний проєкт, який надає дані про якість повітря, температуру, вологість і тиск з тисяч станцій по всій країні.
 
-[Home Assistant](https://www.home-assistant.io/) is an awesome home automation system
+Ця інтеграція додає підтримку SaveEcoBot у [Home Assistant](https://www.home-assistant.io/), дозволяючи створювати сенсори на основі даних конкретних станцій.
 
-This piece of code adds SaveEcoBot API info with Home Assistant. 
+---
 
-## Initial steps
+## 🔧 Встановлення
 
-1. Copy this repo's files into `<home assistant config directory>/custom_components/save_eco_bot` (don't forget to [install HASS](https://www.home-assistant.io/getting-started/) first)
+### Варіант 1. Через HACS (рекомендовано)
 
-2.  Enable `SaveEcoBot` platform in `configuration.yaml`:
-```yaml
-sensor:
- - platform: save_eco_bot
-```
-3. Restart Home Asssistant
+1. Відкрийте **HACS → Integrations → три крапки (⋮) → Custom repositories**.  
 
-## Customizing configuration
+2. У полі **Repository** вставте:
+https://github.com/TetianaKolpakova/hass_save_eco_bot_sensor . У полі **Category** виберіть **Integration** і натисніть **Add**.
 
-After initial configuration (and if SaveEcoBot data available, of course, check the logs) you'll see two new HASS services:
+3. Після цього інтеграція з’явиться в HACS. Знайдіть **SaveEcoBot UI** і натисніть **Install**.
 
-- save_eco_bot.show_cities
-- save_eco_bot.show_city_stations
+4. Перезапустіть Home Assistant.
 
-(See the `Developer tools - Services` page of your HASS at `<HASS_url>:<HASS_PORT>/developer-tools/service`)
+5. Після рестарту перейдіть у **Settings → Devices & Services → Add Integration** і додайте **SaveEcoBot UI**.
 
-Calling these services will give you an additional info for filtering available data. Service calls will create a notifications in notifications area:
+### Варіант 2. Ручна установка
 
-`save_eco_bot.show_cities` will show the list of available cities
+1. Скопіюйте вміст цього репозиторію в:
+<config>/custom_components/save_eco_bot
 
-`save_eco_bot.show_city_stations` will show stations for certain city. You'll have to provide the city name as shown in `save_eco_bot.show_cities` call in service parameters:
-```yaml
-city: Kyiv
-```
+2. Перезапустіть Home Assistant.
 
-the output will give you Stations IDs, e.g.
+---
 
-```
-SaveEcoBot Stations
-Stations in Kyiv:
+## ⚙️ Налаштування через UI
 
-SAVEDNIPRO_010 - Mykhaila Lomonosova Street, 73
-SAVEDNIPRO_1004 - vulytsia Henerala Zhmachenka, 4
-SAVEDNIPRO_1266 - vulytsia Kostiantynivska, 73
-SAVEDNIPRO_1274 - prospekt Heroiv Stalinhrada, 6K8
-...
-```
+1. Відкрийте **Settings → Devices & Services → Integrations → Add Integration**.
+2. Знайдіть **SaveEcoBot**.
+3. Далі відкриється майстер налаштування:
+- **Крок 1:** Оберіть місто зі списку.
+  > Щоб знайти потрібну станцію, відкрийте [мапу SaveEcoBot](https://www.saveecobot.com/maps), клацніть по точці на мапі та подивіться на кінець URL — там буде `device_xxxxx`.
+- **Крок 2:** Оберіть одну або кілька станцій.
+  - Можна натиснути **Select all**, щоб додати всі станції міста.
+  - За замовчуванням жодна станція не вибрана.
 
-## Final settings
+4. Після збереження інтеграція створить окремі сенсори для кожного параметра:
+- `PM2.5`, `PM10`
+- `Temperature`, `Humidity`, `Pressure`
+- `Air Quality Index`
 
-Update your `configuration.yaml` with filtering parameters and restart HASS. This will create all available sensors for all chosen stations.
-All three filters are applied together, so i wouldn't recommend you to use them all, consider getting all IDs you need, or provide city name only 
+---
 
-## Example config
+## 📈 Результат
 
-```yaml
-sensor:
- - platform: save_eco_bot
-   station_ids:
-     - SAVEDNIPRO_3422
-     - SAVEDNIPRO_1294
-     - SAVEDNIPRO_1004
-   city_names:
-     - Kyiv
-     - Lviv
-     - Odesa
-   station_names:
-     - "prospekt Slobozhanskyi, 127A"
-```
+Після встановлення з’являться сенсори типу:
 
-Have fun! 
+- `sensor.pm25_andriivka_main_street`
+- `sensor.temperature_andriivka_main_street`
+- `sensor.aqi_andriivka_main_street`
+
+Дані оновлюються автоматично через офіційний API SaveEcoBot.
+
+---
+
+## 🧩 Можливості
+
+- Підтримка Config Flow (UI-налаштування без YAML).
+- Dropdown-вибір міст та станцій із підтримкою “Select all”.
+- Підказка з посиланням на мапу SaveEcoBot.
+- Автоматичне оновлення даних з API кожні 30 секунд.
+- Повна сумісність з HACS.
+
+---
+
+## 🗺️ Підказка
+
+Визначити ID станції можна за посиланням:
+👉 [https://www.saveecobot.com/maps](https://www.saveecobot.com/maps)
+
+Натисніть на точку на мапі — в URL побачите `device_xxxxx`. Числа після 'device_' і є ідентифікатор станції.
+
+---
+
+## 🤝 Автори
+
+- **Оригінальна версія:** [@kuzin2006](https://github.com/kuzin2006)
+- **Оновлена підтримка Config Flow, UI-інтерфейс і HACS:** [@TetianaKolpakova](https://github.com/TetianaKolpakova)
+
+---
+
+## 📄 Ліцензія
+
+Цей проєкт поширюється за ліцензією MIT.
