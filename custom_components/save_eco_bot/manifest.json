@@ -6,5 +6,5 @@
   "documentation": "https://github.com/TetianaKolpakova/save_eco_bot_air_quality/blob/master/README.md",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/TetianaKolpakova/save_eco_bot_air_quality/issues",
-  "version": "1.4.0"
+  "version": "1.4.1"
 }
