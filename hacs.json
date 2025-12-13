@@ -1,5 +1,6 @@
 {
   "name": "SaveEcoBot Air Quality",
-  "render_readme": true,
-  "domains": ["save_eco_bot"]
+  "content_in_root": false,
+  "iot_class": "cloud_polling",
+  "render_readme": true
 }
