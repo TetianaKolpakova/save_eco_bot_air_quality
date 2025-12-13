@@ -1,7 +1,7 @@
 {
   "domain": "save_eco_bot",
   "name": "SaveEcoBot Air Quality",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "documentation": "https://github.com/TetianaKolpakova/hass_save_eco_bot_sensor/blob/main/README.md",
   "issue_tracker": "https://github.com/TetianaKolpakova/hass_save_eco_bot_sensor/issues",
   "platforms": ["sensor"],
